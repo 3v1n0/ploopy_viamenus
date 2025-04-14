@@ -1,6 +1,6 @@
 #if defined(PLOOPY_MSGESTURE_ENABLE) && defined(DEFERRED_EXEC_ENABLE)
   #include "mouse_gesture.h"
-  #include "mouse_jiggler.h"
+//  #include "mouse_jiggler.h"
   #include "better_dragscroll.h"
   #include "ploopy_via.h"
 
@@ -77,9 +77,6 @@
     ploopy_msGestureCooldown = true;
     ploopy_msGestureSwitchCooldown = defer_exec(PLOOPY_MSGESTURE_COOLDOWN, PLOOPY_MSGESTURE_expireCooldown, NULL);
     switch(action){
-        case GESTURE_ACTION_MSJIGGLER:
-          jiggler_toggle();
-          break;
         case GESTURE_ACTION_DRAGSCROLL:
           better_dragscroll_toggle(true);
           break;
@@ -118,15 +115,6 @@
         }
     }
 
-    if( PLOOPY_MSGESTURE_X.count >= gestureCount ) {
-        dprintf("X Jiggle a:%d\n", PLOOPY_MSGESTURE_X.action);
-        ploopy_msGestureTriggered(PLOOPY_MSGESTURE_X.action);
-    }
-
-    if( PLOOPY_MSGESTURE_Y.count >= gestureCount ) {
-        dprintf("Y Jiggle a:%d\n", PLOOPY_MSGESTURE_Y.action);
-        ploopy_msGestureTriggered(PLOOPY_MSGESTURE_Y.action);
-    }
     return mouse_report;
   }
 #endif
